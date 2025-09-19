@@ -1,13 +1,23 @@
-FROM openjdk:11 AS Build_Image
-RUN apt update && apt install maven -y
-RUN git clone https://github.com/hkhcoder/vprofile-project.git
-RUN cd vprofile-project && git checkout containers && mvn install
+FROM maven:3.9.9-eclipse-temurin-21-jammy AS Build_Image
+RUN git clone https://github.com/faresalig/vprof-Project.git
+RUN cd vprof-Project && MAVEN_OPTS="-Xmx1024m" mvn install
+
 
 
 FROM tomcat:9-jre11
 RUN rm -rf /usr/local/tomcat/webapps/*
-COPY --from=Build_Image vprofile-project/target/vprofile-v2.war /usr/local/tomcat/webapps/Root.war
+COPY --from=build_image vprof-Project/target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
+CMD [ "catalina.sh" "run"]
 
-CMD [ "containers.sh" "run"]
+
+# to login to the image
+#docker run --rm -it maven:3.9.9-eclipse-temurin-21-jammy bash
+
+# to show all files in target
+
+# git clone https://github.com/faresalig/vprof-Project.git
+# cd vprof-Project
+# mvn install
+# ls -lh target/
