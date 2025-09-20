@@ -13,7 +13,7 @@ spec:
     metadata:
       labels:
         app: vpromc
-    spec:
+  spec:
     containers:
       - name: vpromc
         image: memcached

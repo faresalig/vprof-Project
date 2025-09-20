@@ -13,7 +13,7 @@ spec:
     metadata:
       labels:
         app: vproapp
-    spec:
+  spec:
     containers:
       - name: vproapp
         image: farespro/vprofileapp
