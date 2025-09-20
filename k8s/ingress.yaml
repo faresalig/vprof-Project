@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: 
+  - host: vproapp.disslite.com
     http:
       paths:
       - path: /
