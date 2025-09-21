@@ -4,7 +4,7 @@ RUN cd vprof-Project && MAVEN_OPTS="-Xmx1024m" mvn install
 
 
 
-FROM tomcat:9-jre11
+FROM tomcat:9-jdk11
 RUN rm -rf /usr/local/tomcat/webapps/*
 COPY --from=build_image vprof-Project/target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
 
